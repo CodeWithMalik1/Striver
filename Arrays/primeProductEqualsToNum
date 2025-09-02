@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+    public static void primeProductEqualsToNum(int n) {
+        List<Integer> primes = new ArrayList<>();
+        int temp=n;
+         int c=0;
+        for(int i=2;i<=temp;i++){
+            while(temp%i==0){
+                 c++;
+                if(c!=1) System.out.print(" X ");
+                System.out.print(i);
+                temp=temp/i;
+            }
+            
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        primeProductEqualsToNum(10);  //2X5
+        primeProductEqualsToNum(12); //2X2X3
+        primeProductEqualsToNum(15); //3X5
+        primeProductEqualsToNum(17); // 17
+        
+    }
+}
