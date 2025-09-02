@@ -1,0 +1,39 @@
+import java.util.*;
+public class Main
+{
+    
+    public static int[] divisors(int n) {
+        List <Integer> arr=new ArrayList<>();
+        
+        for(int i=1;i<=n;i++){
+            if(n%i==0) arr.add(i);
+        }
+        //returning Array after converting ArrayList to ArrayList
+        int newArr[]=new int[arr.size()];
+        for(int i=0;i<newArr.length;i++){
+            newArr[i]=arr.get(i);
+        }
+        return newArr;
+        
+
+    }
+    public static void printArr(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+
+   
+        
+
+    
+	public static void main(String[] args) {
+	    
+   
+   printArr(divisors(6)); //1 2 3 6
+   printArr(divisors(10)); //1 2 5 10
+		
+		
+	}
+}
