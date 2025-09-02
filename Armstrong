@@ -1,0 +1,36 @@
+public class Main
+{
+    public static boolean isArmstrong(int n1) {
+        int c=0;
+        int n=n1;
+        while(n>0){
+            n=n/10;
+            c++;
+        }
+        int n2=n1;
+        int sum=0;
+         
+        while(n2>0){
+            int rem=n2%10;
+            int arm=1;
+            for(int i=0;i<c;i++){
+                arm=arm*rem;
+               
+            }
+            
+            sum=sum+arm;
+            n2=n2/10;
+            
+        }
+        if(sum==n1) return true;
+        else return false;
+        
+
+    }
+	public static void main(String[] args) {
+		System.out.println(isArmstrong(153));
+		System.out.println(isArmstrong(15));
+			System.out.println(isArmstrong(1));
+		
+	}
+}
