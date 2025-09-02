@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Main {
+    public static List<Integer>  weather(int temp[]) {
+        List<Integer> diff = new ArrayList<>();
+        for(int i=0;i<temp.length;i++){
+            int c=0;
+            boolean found=false;
+            for(int j=i+1;j<temp.length;j++){
+                c++;
+                if((temp[j]>temp[i])) {
+                    diff.add(c);
+                    found=true;
+                    break;
+                }
+            }
+                if(!found) diff.add(0);
+            
+            
+        }
+        return diff;
+       
+    }
+
+    public static void main(String[] args) {
+       
+        int temp[]={71,72,73,67,61,69,53};
+        System.out.println(weather(temp));//[1,1,0,2,1,0,0]
+    }
+}
