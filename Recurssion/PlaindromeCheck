@@ -1,0 +1,41 @@
+public class Main
+{
+   public static boolean palindromeCheck(String s) {
+        int left=0,right=s.length()-1;
+        boolean fact=false;
+        if(s.length()==1) return true;
+        while(left<right){
+           if(s.charAt(left)==s.charAt(right)){
+            left++;
+            right--;
+            fact=true;
+           }
+           else return false;
+        }
+          return fact;
+    }
+    //recursive approach
+    public static boolean palindromeCheck1(String s,int n){
+        if(n>s.length()/2) return true;
+        if(s.charAt(n)!=s.charAt(s.length()-1-n)) return false;
+       return  palindromeCheck1(s,n+1);
+    }
+    
+    
+    
+	public static void main(String[] args) {
+	    String s="abcba";
+	     String s2="a";
+	    String s1="abcbaw";
+	    
+	    System.out.println(palindromeCheck(s2));
+	    System.out.println(palindromeCheck(s));
+	    System.out.println(palindromeCheck(s1));
+	    System.out.println("-----------------------------");
+	    System.out.println(palindromeCheck1(s2,0));
+	    System.out.println(palindromeCheck1(s,0));
+	    System.out.println(palindromeCheck1(s1,0));
+		
+		
+	}
+}
