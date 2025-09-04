@@ -1,0 +1,25 @@
+public class Main {
+    public static void leftRotatebyDplaces(int arr[],int n){
+        int left=0,right=arr.length-1;
+        int c=0;
+        while(c<n){
+            int temp=arr[left];
+            arr[left]=arr[right];
+            arr[right]=temp;
+            left++;
+            right--;
+            c++;
+        }
+    }
+    public static void printArr(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+  public static void main(String[] args) {
+      int arr[]={1,2,3,4,5,6,7,8,9,10,11};
+      int n=3;
+      leftRotatebyDplaces(arr,n);
+      printArr(arr);
+  }
+}
