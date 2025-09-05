@@ -1,0 +1,25 @@
+import java.util.*;
+public class Main
+{
+     public static int singleNumber(int[] nums) {
+         HashMap<Integer,Integer> hash=new HashMap<>();
+         for(int num:nums){
+             hash.put(num,hash.getOrDefault(num,0)+1);
+             
+         }
+         for(int num:nums){
+             if(hash.get(num)==1) return num;
+         }
+         return -1;
+         
+         
+       
+    }
+	public static void main(String[] args) {
+	    int arr[]={1,2,3,2,5,2,1,9,3,5,3,3,4,4,};
+	    System.out.println(singleNumber(arr));
+	    
+	    
+		
+	}
+}
