@@ -1,0 +1,42 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.*;
+public class Main
+{
+     public static int[] singleNumber(int[] nums) {
+         HashMap<Integer,Integer> hash=new HashMap<>();
+         for(int num:nums){
+             hash.put(num,hash.getOrDefault(num,0)+1);
+             
+         }
+         List <Integer> result=new ArrayList<>();
+         for(int num:hash.keySet()){
+             if(hash.get(num)==2) result.add(num);
+             
+         }
+         int ans[]=new int[result.size()];
+         for(int i=0;i<ans.length;i++){
+             ans[i]=result.get(i);
+         }
+         return ans;
+         
+         
+       
+    }
+	public static void main(String[] args) {
+	    int arr[]={1,2,3,8,8,2,5,2,9,1,9,3,5,3,3,4,4,};
+	    int result[]=singleNumber(arr);
+	    for(int i=0;i<result.length;i++){
+	        System.out.print(result[i]+" ");
+	    }
+	    System.out.println();
+	    //output [1,4,5,8,9]
+	    
+		
+	}
+}
