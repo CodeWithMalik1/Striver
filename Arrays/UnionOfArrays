@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class Main {
+    public static ArrayList<Integer> unionArray(int[] nums1, int[] nums2) {
+        ArrayList<Integer> Union = new ArrayList<>();
+        int i = 0, j = 0;
+        int m = nums1.length, n = nums2.length;
+
+        while(i<m && j<n){
+            if(nums1[i]<=nums2[j]){
+                if(Union.size()==0 || Union.get(Union.size()-1)!=nums1[i]){
+                    Union.add(nums1[i]);
+                }
+                i++;
+            }
+            else{
+                if(Union.size()==0|| Union.get(Union.size()-1)!=nums2[j]) Union.add(nums2[j]);
+                j++;
+            }
+        }
+        while(i<m){
+            
+                if(Union.size()==0 || Union.get(Union.size()-1)!=nums1[i]){
+                    Union.add(nums1[i]);
+                }
+                i++;
+            
+        }
+        while(j<n){
+            if(Union.size()==0 || Union.get(Union.size()-1)!=nums2[j]) Union.add(nums2[j]);
+                j++;
+            }
+            
+        
+
+        return Union;
+    }
+
+    public static void main(String[] args) {
+        int nums1[] = {1, 2, 3, 4, 5};
+        int nums2[] = {1, 2, 7};
+
+        ArrayList<Integer> Union = unionArray(nums1, nums2);
+
+        for (int i : Union) {
+            System.out.print(i + " ");
+        }
+    }
+}
