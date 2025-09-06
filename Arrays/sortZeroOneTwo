@@ -1,0 +1,31 @@
+import java.util.*;
+public class Main
+{
+     public static void sortZeroOneTwo(int[] arr,int n) {
+        int left=0,mid=0,right=n-1;
+        while(mid<=right){
+            if(arr[mid]==0){
+                int temp=arr[left];
+                arr[left]=arr[mid];
+                arr[mid]=temp;
+                left++;
+                mid++;
+            }
+            else if(arr[mid]==1) mid++;
+            else{
+                int temp=arr[mid];
+                arr[mid]=arr[right];
+                arr[right]=temp;
+                right--;
+            }
+        }
+    }
+	public static void main(String[] args) {
+	    int nums[]={1,2,0,2,1,2,1,1,2,0,0};
+	    int n = nums.length;
+		sortZeroOneTwo(nums,n);
+		for (int i=0;i<n;i++){
+		    System.out.print(nums[i]+" ");
+		} 
+	}
+}
