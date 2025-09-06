@@ -1,0 +1,28 @@
+import java.util.*;
+class Main {
+     public static int[] twoSum(int[] nums, int target) {
+         HashMap <Integer,Integer> map=new HashMap<>();
+         List <Integer> res=new ArrayList<>();
+         
+         for(int i=0;i<nums.length;i++){
+
+             int moreRequired=target-nums[i];
+             if(map.containsKey(moreRequired)){
+                 return new int[]{moreRequired, nums[i]};
+               
+             }
+             map.put(nums[i], i);
+         }
+         return new int[]{-1, -1};
+        
+    }
+
+	public static void main(String[] args) {
+	    int[] a = {-2, 3, 5, 1, 9};
+        int k = 10;
+        int[] ans = twoSum(a, k);
+        System.out.println("Pair: [" + ans[0] + ", " + ans[1] + "]");
+       
+	
+	}
+}
