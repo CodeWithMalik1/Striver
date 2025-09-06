@@ -8,10 +8,6 @@ public class KedaneAlgo {
             if (sum > max) {
                 max = sum;
             }
-            if (sum < 0) {
-                sum = 0;
-            }
-
         }
         System.out.println(max);
 
@@ -26,3 +22,4 @@ public class KedaneAlgo {
     }
 
 }
+
