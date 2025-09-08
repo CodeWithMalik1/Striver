@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main {
+    public static List<Integer> leaders(int[] nums) {
+        List<Integer> Leader = new ArrayList<>();
+        int n = nums.length;
+        int maxFromRight = nums[n - 1];
+        Leader.add(maxFromRight);
+        for (int i = n - 2; i >= 0; i--) {
+            if (nums[i] >= maxFromRight) {
+                maxFromRight = nums[i];
+                Leader.add(nums[i]);
+            }
+        }
+        Collections.reverse(Leader);
+        return Leader;
+    }
+    
+    public static void main(String[] args) {
+        int nums[] = {1, 2, 5, 3, 1, 2};
+        List<Integer> newLi = leaders(nums);
+        
+        for (int val : newLi) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+    }
+}
