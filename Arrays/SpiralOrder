@@ -1,0 +1,50 @@
+import java.util.*;
+public class Main
+{
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        List <Integer> li=new ArrayList<>();
+        int startRow=0,endRow=matrix.length-1;
+        int startCol=0,endCol=matrix[0].length-1;
+        while(startRow<=endRow && startCol<=endCol){
+            // top 
+            for(int i=startCol;i<=endCol;i++){
+                li.add(matrix[startRow][i]);
+            }
+            //right
+            for(int j=startRow+1;j<=endRow;j++){
+                li.add(matrix[j][endCol]);
+            }
+            //bottom
+            for(int i=endCol-1;i>=startCol;i--){
+                // if(startCol==endCol) return;
+                li.add(matrix[endRow][i]);
+            }
+            //left
+            for(int j=endRow-1;j>startRow;j--){
+                li.add(matrix[j][startCol]);
+            }
+            startCol++;
+            endCol--;
+            startRow++;
+            endRow--;
+        }
+        return li;
+        
+    }
+	public static void main(String[] args) {
+	    int matrix[][]={
+           {1,2,3,4},
+           {5,6,7,8},
+           {9,10,11,12},
+           {13,14,15,16},
+           {17,18,19,29}
+
+        };
+        List<Integer>newLi=spiralOrder(matrix);
+        for(int i=0;i<newLi.size();i++){
+            System.out.print(newLi.get(i)+" ");
+        }
+        System.out.println();
+		
+	}
+}
