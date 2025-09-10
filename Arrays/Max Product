@@ -1,0 +1,24 @@
+public class Main
+{
+    public static int maxProduct(int[] nums) {
+        int left=1,right=1;
+        int n=nums.length;
+        int ans=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++)
+        {
+            if(left==0) left=1;
+            if(right==0) right=1;
+            left*=nums[i];
+            right*=nums[n-i-1];
+            ans=Math.max(ans,Math.max(left,right));
+            
+        }
+        return ans;
+    }
+	public static void main(String[] args) {
+		int nums[]={4, 5, 3, 7, 1, 2};
+		System.out.println(maxProduct(nums));
+		int nums1[]={-5,0,-1};
+		System.out.println(maxProduct(nums1));
+	}
+}
