@@ -1,0 +1,40 @@
+public class Main {
+    public static int[] getFloorAndCeil(int[] nums, int x) {
+        int low = 0, high = nums.length - 1;
+        int floor = -1, ceil = -1;
+
+        // find floor
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (nums[mid] <= x) {
+                floor = nums[mid];
+                low = mid + 1;   // search right for closer floor
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        low = 0; 
+        high = nums.length - 1;
+
+        // find ceil
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (nums[mid] >= x) {
+                ceil = nums[mid];
+                high = mid - 1;  // search left for closer ceil
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return new int[] { floor, ceil };
+    }
+
+    public static void main(String[] args) {
+        int nums[] = {3, 4, 4, 7, 8, 10};
+        int x = 5;
+        int newArr[] = getFloorAndCeil(nums, x);
+        System.out.println(newArr[0] + " " + newArr[1]);
+    }
+}
