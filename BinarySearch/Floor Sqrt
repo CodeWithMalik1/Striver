@@ -1,0 +1,17 @@
+//Input: n = 36
+//Output: 6
+//Explanation: 6 is the square root of 36.
+
+
+import java.util.*;
+public class Main
+{
+     public static int floorSqrt(int n) {
+        return (int)(Math.sqrt(n));
+      
+    }
+	public static void main(String[] args) {
+	    int n=50;
+		System.out.println(floorSqrt(n));
+	}
+}
