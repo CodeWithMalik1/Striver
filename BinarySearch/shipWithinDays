@@ -1,0 +1,57 @@
+// Input: weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], days = 5
+
+// Output: 15
+
+// Explanation:
+
+// Minimum ship capacity = 15. One way to ship in 5 days:
+
+// Day 1: 1 + 2 + 3 + 4 + 5 = 15
+// Day 2: 6 + 7 = 13
+// Day 3: 8
+// Day 4: 9
+// Day 5: 10
+// No day exceeds capacity 15 and all packages are shipped in order in 5 days.
+
+
+public class Main {
+    public static int shipWithinDays(int[] weights, int days) {
+        int low = 0, high = 0;
+        for (int w : weights) {
+            low = Math.max(low, w);  // heaviest item
+            high += w;               // total sum
+        }
+
+        int ans = high;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (canShip(weights, days, mid)) {
+                ans = mid;          // try smaller capacity
+                high = mid - 1;
+            } else {
+                low = mid + 1;      // need bigger capacity
+            }
+        }
+        return ans;
+    }
+
+    public static boolean canShip(int[] weights, int days, int capacity) {
+        int daysUsed = 1, currLoad = 0;
+
+        for (int w : weights) {
+            if (currLoad + w > capacity) {
+                daysUsed++;
+                currLoad = 0;
+            }
+            currLoad += w;
+        }
+        return daysUsed <= days;
+    }
+
+    public static void main(String[] args) {
+        int[] weights = {1,2,3,4,5,6,7,8,9,10};
+        int days = 5;
+        System.out.println(shipWithinDays(weights, days));  // Output: 15
+    }
+}
