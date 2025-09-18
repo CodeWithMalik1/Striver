@@ -1,0 +1,70 @@
+// Input: n = 8, nums = [7, 7, 7, 7, 13, 11, 12, 7], m = 2, k = 3
+
+// Output: 12
+
+// Explanation: On the 12th the first 4 flowers and the last 3 flowers would have already bloomed. So, we can easily make 2 bouquets, one with the first 3 and another with the last 3 flowers.
+
+// Input: n = 5, nums = [1, 10, 3, 10, 2], m = 3, k = 2
+
+// Output: -1
+
+// Explanation: If we want to make 3 bouquets of 2 flowers each, we need at least 6 flowers. But we are given only 5 flowers, so, we cannot make the bouquets.
+
+
+public class Main {
+
+    public static int roseGarden(int n, int[] nums, int k, int m) {
+        // If not enough roses to ever make m bouquets
+        if (n < m * k) return -1;
+
+        // Find minimum and maximum day from nums
+        int low = Integer.MAX_VALUE;
+        int high = Integer.MIN_VALUE;
+        for (int day : nums) {
+            low = Math.min(low, day);
+            high = Math.max(high, day);
+        }
+
+        int ans = -1;
+
+        // Binary search on days
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (canMake(nums, mid, k, m)) {
+                ans = mid;         // mid day works, try earlier
+                high = mid - 1;
+            } else {
+                low = mid + 1;     // need more days
+            }
+        }
+
+        return ans;
+    }
+
+    // Check if we can make at least m bouquets by 'mid' day
+    private static boolean canMake(int[] nums, int mid, int k, int m) {
+        int bouquets = 0;
+        int consecutive = 0;
+
+        for (int day : nums) {
+            if (day <= mid) {
+                consecutive++;
+                if (consecutive == k) {
+                    bouquets++;
+                    consecutive = 0; // reset after forming one bouquet
+                }
+            } else {
+                consecutive = 0; // break in sequence
+            }
+        }
+
+        return bouquets >= m;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {7, 7, 7, 7, 13, 11, 12, 7};
+        int n = 8, m = 2, k = 3;
+        System.out.println(roseGarden(n, nums, k, m));  // Output: 12
+    }
+}
