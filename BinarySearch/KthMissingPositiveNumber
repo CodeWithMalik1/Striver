@@ -1,0 +1,22 @@
+public class KthMissingPositiveNumber {
+    public static int  kthmissing(int arr[],int k){
+        int left=0,right=arr.length;
+        while(left<=right){
+            int mid=(left+right)/2;
+            int misssing =arr[mid]-mid-1;
+            if(misssing<k) left=mid+1;
+            else right=mid-1;
+        }
+        return left+k;  
+    }
+    public static void main(String[] args) {
+        int arr[]={3,5,7,10};
+        int k=6;
+        System.err.println(kthmissing(arr, k));//9
+
+        int arr1[]={1,4,6,8,9};
+        int k1=3;
+        System.err.println(kthmissing(arr1, k1));//5
+    }
+    
+}
