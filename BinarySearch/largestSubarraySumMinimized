@@ -1,0 +1,61 @@
+// Input: a = [1, 2, 3, 4, 5], k = 3
+
+// Output:6
+
+// Explanation: There are many ways to split the array a[] into k consecutive subarrays. The best way to do this is to split the array a[] into [1, 2, 3], [4], and [5], where the largest sum among the three subarrays is only 6.
+
+// Input: a = [3,5,1], k = 3
+
+// Output: 5
+
+// Explanation: There is only one way to split the array a[] into 3 subarrays, i.e., [3], [5], and [1]. 
+// The largest sum among these subarrays is 5.
+
+import java.util.*;
+
+public class Main {
+    public static int largestSubarraySumMinimized(int[] nums, int k) {
+        int low = Arrays.stream(nums).max().getAsInt();  
+        int high = Arrays.stream(nums).sum();           
+        int ans = -1;
+        
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(canAllocate(nums, k, mid)){
+               
+                ans=mid;
+                high=mid-1; 
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+    public static boolean canAllocate(int nums[],int k, int limit){
+        int c=1;
+        int sub=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]+sub>limit){
+                sub=nums[i];
+                 c++;
+                if(c>k) return false;
+            }
+            else {
+                sub+=nums[i];
+            }
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) {
+       int nums[] = {1, 2, 3, 4, 5};
+       int k = 3;
+       System.out.println(largestSubarraySumMinimized(nums,k));//6
+       
+       int nums1[] = {3,5,1};
+       int k1= 3;
+       System.out.println(largestSubarraySumMinimized(nums1,k1));//6
+
+    }
+}
