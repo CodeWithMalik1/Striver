@@ -1,0 +1,73 @@
+// Input: A = 2, B = 5, C = [1, 10]
+
+// Output: 50
+
+// Explanation:
+
+// Painter 1 paints board 0 (length = 1), time = 5
+// Painter 2 paints board 1 (length = 10), time = 50
+// Max time = 50
+// Return 50 % 10000003 = 50
+// Input: A = 10, B = 1, C = [1, 8, 11, 3]
+
+// Output: 11
+
+// Explanation:
+
+// Assign each board to a different painter
+// Max time = max(1, 8, 11, 3) = 11
+// Return 11 % 10000003 = 11
+
+
+
+import java.util.*;
+
+public class Main {
+    
+    public static int paint(int A, int B, int C[]) {
+        int low = Arrays.stream(C).max().getAsInt();
+        int high = Arrays.stream(C).sum();
+        int ans = high;
+        
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int painters = countPainters(C, mid);
+            
+            if (painters > A) {
+                // too many painters needed, increase time
+                low = mid + 1;
+            } else {
+                ans = mid;
+                high = mid - 1;
+            }
+        }
+        
+        long result = ((long) ans * (long) B) % 10000003;
+        return (int) result;
+    }
+    
+    public static int countPainters(int boards[], int maxTime) {
+        int painters = 1;
+        int currentTime = 0;
+        
+        for (int len : boards) {
+            if (currentTime + len <= maxTime) {
+                currentTime += len;
+            } else {
+                painters++;
+                currentTime = len;
+            }
+        }
+        return painters;
+    }
+    
+    public static void main(String[] args) {
+        int A = 2, B = 5;
+        int C[] = {1, 10};
+        System.out.println(paint(A, B, C));  // Expected 50
+        
+        int A2 = 10, B2 = 1;
+        int C2[] = {1, 8, 11, 3};
+        System.out.println(paint(A2, B2, C2));  // Expected 11
+    }
+}
