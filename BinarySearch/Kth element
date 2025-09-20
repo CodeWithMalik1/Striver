@@ -1,0 +1,51 @@
+// Input: a = [2, 3, 6, 7, 9], b = [1, 4, 8, 10], k = 5
+
+// Output: 6
+
+// Explanation: The final sorted array would be [1, 2, 3, 4, 6, 7, 8, 9, 10]. The 5th element of this array is 6.
+
+
+import java.util.*;
+public class Main
+{
+   public static int kthElement(int[] a, int[] b, int k) {
+        int n1 = a.length, n2 = b.length;
+        int i = 0, j = 0, count = 0;
+        int result = -1;
+        while(i<n1&&j<n2){
+            if(a[i]<=b[j]){
+                result=a[i];
+                i++;
+                
+            }
+            else{
+                result=b[j];
+                j++;
+            }
+            count++;
+            if(count==k) return result;
+        }
+        while(i<n1){
+            result=a[i];
+            i++;
+            count++;
+            if(count==k) return result;
+        }
+        while(j<n2){
+            result=a[j];
+            j++;
+            count++;
+            if(count==k) return result;
+        }
+        return result;
+        
+      
+    }
+	public static void main(String[] args) {
+	   int a[] = {2, 3, 6, 7, 9};
+	   int b[] = {1, 4, 8, 10};
+	   int k = 5;
+	   System.out.println(kthElement(a,b,k));
+		
+	}
+}
