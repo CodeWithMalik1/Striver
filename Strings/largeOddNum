@@ -1,0 +1,30 @@
+// Input : s = "5347"
+
+// Output : "5347"
+
+// Explanation :
+
+// The odd numbers formed by given strings are --> 5, 3, 53, 347, 5347.
+
+// So the largest among all the possible odd numbers for given string is 5347.
+
+
+
+public class Main {
+    public static String largeOddNum(String s) {
+        for (int i = s.length() - 1; i >= 0; i--) {
+            char ch = s.charAt(i);
+            if ((ch - '0') % 2 == 1) { // odd digit found
+                String res = s.substring(0, i + 1);
+                // remove leading zeros
+                return res.replaceFirst("^0+", "");
+            }
+        }
+        return "-1"; // if no odd digit found
+    }
+
+    public static void main(String[] args) {
+        String s = "0214638";
+        System.out.println(largeOddNum(s)); // Output: 21463
+    }
+}
