@@ -1,0 +1,41 @@
+// Input: s = "((()))"
+
+// Output: "(())"
+
+// Explanation:
+
+// The input string is a single primitive: "((()))".
+
+// Removing the outermost layer yields: "(())".
+
+
+public class Main
+{
+    public String removeOuterParentheses(String s) {
+        int balance=0;
+        StringBuilder result = new StringBuilder();
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='('){
+                if(balance>0){
+                    result.append(s.charAt(i));
+                }
+                balance++;
+            }
+            else{
+                 balance--;
+                 if(balance>0){
+                    result.append(s.charAt(i));
+                }
+                
+            }
+           
+        }
+        return result.toString();
+        
+    }
+	public static void main(String[] args) {
+		 Main obj = new Main();
+        String s = "((()))";
+        System.out.println(obj.removeOuterParentheses(s));
+	}
+}
