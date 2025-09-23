@@ -1,0 +1,49 @@
+// Input : s = "tree"
+
+// Output : ['e', 'r', 't' ]
+
+// Explanation :
+
+// The occurrences of each character are as shown below :
+
+// e --> 2
+
+// r --> 1
+
+// t --> 1.
+
+// The r and t have same occurrences , so we arrange them by alphabetic order.
+
+
+
+import java.util.*;
+
+public class Main {
+
+    public static List<Character> frequencySort(String s) {
+        // Step 1: Count frequencies
+        Map<Character, Integer> freqMap = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);
+        }
+
+        // Step 2: Sort characters by frequency, then alphabetically
+        List<Character> characters = new ArrayList<>(freqMap.keySet());
+        characters.sort((a, b) -> {
+            int freqCompare = freqMap.get(b).compareTo(freqMap.get(a));
+            if (freqCompare != 0) {
+                return freqCompare; // sort by descending frequency
+            } else {
+                return Character.compare(a, b); // sort alphabetically
+            }
+        });
+
+        return characters;
+    }
+
+    public static void main(String[] args) {
+        String input = "tree";
+        List<Character> result = frequencySort(input);
+        System.out.println(result); // Output: [e, r, t]
+    }
+}
