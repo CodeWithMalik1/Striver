@@ -1,0 +1,28 @@
+// Input: s = "(1+(2*3)+((8)/4))+1"
+// Output: 3
+// Explanation: The deepest nested sub-expression is ((8)/4), which has 3 layers of parentheses.
+
+
+public class Main
+{
+    public static int maxDepth(String s) {
+        int balance=0;
+        int maxDepth=0;
+        for(int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+            if(c=='('){
+                balance++;
+                if(balance>maxDepth){
+                    maxDepth=balance;
+                }
+            }
+            else if(c==')') balance--;
+        }
+        return maxDepth;
+    }
+	public static void main(String[] args) {
+	    String s="(1+(2*3)+((8)/4))+1";
+	    
+		System.out.println(maxDepth(s));
+	}
+}
