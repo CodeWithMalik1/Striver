@@ -1,0 +1,95 @@
+public class Main {
+    static class LinkedList {
+        Node head;
+        Node tail;
+         int size;
+
+        static class Node {
+            int data;
+           
+            Node next;
+    
+            public Node(int data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        // Add at end
+        public void addLast(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
+               
+            }
+             size++;
+        }
+
+        // Add at start
+        public void addFirst(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+            } else {
+                newNode.next = head;
+                head = newNode;
+               
+            }
+             size++;
+        }
+
+        // Print list
+        public void printList() {
+            if (head == null) {
+                System.out.println("List is empty");
+                return;
+            }
+            Node temp = head;
+            while (temp != null) {
+                System.out.print(temp.data);
+                if (temp.next != null) System.out.print("->");
+                temp = temp.next;
+            }
+            System.out.println();
+        }
+
+        // Remove duplicates from a sorted linked list
+        public void removeDuplicates() {
+            if (head == null) return;
+
+            Node temp = head;
+            while (temp != null && temp.next != null) {
+                if (temp.data == temp.next.data) {
+                    // skip duplicate node
+                    temp.next = temp.next.next;
+                    size--;
+                } else {
+                    temp = temp.next;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        LinkedList li = new LinkedList();
+        li.addLast(10);
+        li.addLast(20);
+        li.addLast(20);
+        li.addLast(30);
+        li.addFirst(55);
+
+        System.out.print("Before removing duplicates: ");
+        li.printList(); // 55->10->20->20->30
+
+        li.removeDuplicates();
+
+        System.out.print("After removing duplicates: ");
+        li.printList(); // 55->10->20->30
+        System.out.println("Size of the list: " +li.size);
+    }
+}
