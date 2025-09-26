@@ -1,0 +1,27 @@
+
+public class Main
+{
+    public static String LongestSubPalindrome(String s){
+        String longest="";
+        for(int i=0;i<s.length();i++){
+            String odd=expandAroundCenter(s,i,i);
+            String even=expandAroundCenter(s,i,i+1);
+            String curr=odd.length()>even.length()?odd:even;
+            if (curr.length() > longest.length()) {
+                longest = curr;
+            }
+        }
+        return longest;
+    }
+    public static String expandAroundCenter(String s, int left,int right){
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return s.substring(left+1,right); 
+    }
+	public static void main(String[] args) {
+	    String s="madamm";
+		System.out.println(LongestSubPalindrome(s));
+	}
+}
