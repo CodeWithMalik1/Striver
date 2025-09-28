@@ -1,0 +1,132 @@
+public class Main{
+static class LinkedList
+{
+    Node head;
+    Node tail;
+    static class Node{
+        Node next;
+        int data;
+        public Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+        public void addFirst(int data){
+            Node newNode=new Node(data);
+         if(head==null){
+             head=newNode;
+             tail=newNode;
+         }   
+         else{
+             newNode.next=head;
+             head=newNode;
+         }
+        }
+         
+        
+        public void printList(){
+            if(head==null){
+            System.out.println("List is empty");
+            return;
+                
+            }
+            Node temp=head;
+            while(temp!=null){
+                System.out.printf(temp.data+" ");
+                temp=temp.next;
+            }
+            System.out.println();
+        }
+       // Delete first node (head)
+        public void deleteFirst() {
+        if (head == null) {
+        System.out.println("List is empty, nothing to delete");
+        return;
+        }
+    // If only one element
+        if (head == tail) {
+        head = null;
+        tail = null;
+        } else {
+        head = head.next;  
+    }
+}
+public void deleteAfterHead(){
+    if(head==null){
+       System.out.println("List is empty, nothing to delete");
+        return; 
+    }
+    if(head==tail){
+        head=null;
+        tail=null;
+    }
+    else{
+        head.next=head.next.next;
+    }
+}
+public void deleteTail(){
+    if(head==null){
+       System.out.println("List is empty, nothing to delete");
+        return; 
+    }
+    if(head==tail){
+        head=null;
+        tail=null;
+    }
+    else{
+        Node temp=head;
+        while(temp.next.next!=null){
+            temp=temp.next;
+        }
+        temp.next=null;
+        tail=temp;
+    }
+}
+public void deleteAtIndex(int index){
+    if(head==null){
+       System.out.println("List is empty, nothing to delete");
+        return; 
+    }
+    if(head==tail){
+        head=null;
+        tail=null;
+    }
+    else{
+    int i=0;
+    Node temp=head;
+    while(temp!=null && i<index-1){
+        temp=temp.next;
+        i++;
+      }
+      if (temp == null || temp.next == null) {
+        System.out.println("Index out of bounds");
+        return;
+    }
+      temp.next=temp.next.next;
+     }
+    }
+}
+	public static void main(String[] args) {
+	    LinkedList li=new LinkedList();
+	    li.addFirst(10);
+	    li.addFirst(30);
+	    li.addFirst(40);
+	    li.addFirst(20);
+	    li.addFirst(900);
+	    li.addFirst(200);
+	    li.addFirst(40);
+	    li.addFirst(20);
+	    li.addFirst(900);
+	    li.addFirst(200);
+	    li.printList();
+	    li.deleteFirst();
+	    li.printList();
+	    li.deleteAfterHead();
+	    li.printList();
+	    li.deleteTail();
+	    li.printList();
+	    li.deleteAtIndex(3);
+	    li.printList();
+	    
+	}
+}
