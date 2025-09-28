@@ -1,0 +1,108 @@
+
+public class Main
+{
+    static class doubleLinkedlist{
+        Node head;
+        Node tail;
+        int size;
+        class Node{
+            int data;
+            Node next;
+            Node prev;
+            Node(int data){
+                this.data=data;
+                this.next=null;
+                this.prev=null;
+            }
+            
+            
+        }
+        public  void addFirst(int data){
+            Node newNode=new Node(data);
+            if(head==null){
+                head=tail=newNode;
+                
+            }
+            else{
+            newNode.next=head;
+            head.prev=newNode;
+            head=newNode;
+            size++;
+            }
+            
+        }
+        public void addAfterHead(int data){
+            Node newNode=new Node(data);
+            if(head==null){
+                head=tail=newNode;
+                
+            }
+            else if(head==tail){
+                newNode.next = tail;
+                tail.prev = newNode;
+                 head = newNode;
+            }
+            else{
+                newNode.next=head.next;
+                newNode.prev=head;
+                if(head.next!=null) head.next.prev=newNode;
+                else tail=newNode;
+                head.next=newNode;
+            }
+        }
+        public void AddAfterTail(int data){
+            Node newNode=new Node(data);
+            if(head==null){
+                head=tail=newNode;
+                
+            }
+            else{
+                tail.next=newNode;
+                // newNode.prev=tail;
+            }
+        }
+        public void AddBeforeTail(int data){
+            Node newNode=new Node(data);
+            if(head==null){
+                head=tail=newNode;
+                
+            }
+            else{
+               Node prevNode=tail.prev;
+               prevNode.next=newNode;
+               newNode.next=tail;
+               tail.prev=newNode;
+            }
+        }
+        public void printList(){
+            if(head==null){
+                
+             System.out.print("Double doubleLinkedlist is empty");
+            return;
+                
+            }
+            Node temp=head;
+            while(temp!=null){
+                System.out.print(temp.data+" <-> ");
+                temp=temp.next;
+            }
+            System.out.print("null");
+            System.out.println();
+        }
+    }
+	public static void main(String[] args) {
+		doubleLinkedlist dl=new doubleLinkedlist();
+		dl.addFirst(20);
+		dl.addFirst(30);
+		dl.addFirst(302);
+		dl.addFirst(130);
+		dl.printList();
+		System.out.println("Hello World");
+		dl.addAfterHead(222);
+		dl.printList();
+		dl.AddAfterTail(111);
+		dl.printList();
+		dl.AddBeforeTail(444);
+		dl.printList();
+	}
+}
