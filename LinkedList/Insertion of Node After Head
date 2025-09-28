@@ -1,0 +1,63 @@
+public class Main{
+static class LinkedList
+{
+    Node head;
+    Node tail;
+    static class Node{
+        Node next;
+        int data;
+        public Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+        public void addFirst(int data){
+            Node newNode=new Node(data);
+         if(head==null){
+             head=newNode;
+             tail=newNode;
+         }   
+         else{
+             newNode.next=head;
+             head=newNode;
+         }
+        }
+         public void addafterHead(int data){
+             Node newNode=new Node(data);
+             if(head==null){
+             head=newNode;
+             tail=newNode;
+         }   
+         else{
+             newNode.next=head.next;
+             head.next=newNode;
+             
+         }
+         }
+        
+        public void printList(){
+            if(head==null){
+            System.out.println("List is empty");
+            return;
+                
+            }
+            Node temp=head;
+            while(temp!=null){
+                System.out.printf(temp.data+" ");
+                temp=temp.next;
+            }
+            System.out.println();
+        }
+        
+    
+}
+	public static void main(String[] args) {
+	    LinkedList li=new LinkedList();
+	    li.addFirst(10);
+	    li.addFirst(20);
+	    li.printList();
+	    li.addafterHead(50);
+	    li.printList();
+		System.out.println("Hello World");
+	}
+}
