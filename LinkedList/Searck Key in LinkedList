@@ -1,3 +1,4 @@
+//serach key in LinkedList
 public class Main{
 static class LinkedList
 {
