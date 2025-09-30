@@ -1,0 +1,88 @@
+// Input: head -> 1 -> 2 -> 3 -> 4 -> 5
+// Output: head -> 5 -> 4 -> 3 -> 2 -> 1
+// Explanation: All the links are reversed and the head now points to the last node of the original list.
+// Input: head -> 6 -> 8
+// Output: head -> 8 -> 6
+// Explanation: All the links are reversed and the head now points to the last node of the original list.
+// This can be seen like: 6 <- 8 <- head.
+
+
+public class Main
+{
+    static class LinkedList{
+        Node head;
+        Node tail;
+        int size;
+        class Node{
+            Node next;
+            int data;
+            Node(int data){
+                this.data=data;
+                this.next=null;
+            }
+        }
+        public void add(int data){
+            Node newNode=new Node(data);
+            if(head==null){
+                head=newNode;
+                tail=newNode;
+            }
+            else{
+                  newNode.next=head.next;
+                  head.next=newNode;
+                 
+            }
+            size++;
+        }
+       // Reverse the list and return new head
+        public Node reverseList(Node head) {
+            Node prev = null;
+            Node curr = head;
+            while (curr != null) {
+                Node nextNode = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = nextNode;
+            }
+            return prev;
+        }
+        public void printList(){
+            if(head==null){
+                System.out.print("List is empty");
+                return;
+            }
+            Node temp=head;
+            while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+            }
+            System.out.println();
+        }
+        
+    }
+	public static void main(String[] args) {
+	    LinkedList li=new LinkedList();
+	    li.add(20);
+	    li.add(24);
+	    li.add(23);
+	    li.add(22);
+	    li.add(17);
+	    li.printList();
+	    li.head = li.reverseList(li.head);
+        System.out.print("Reversed list: ");
+        li.printList();
+
+        LinkedList li2 = new LinkedList();
+        li2.add(2);
+        li2.add(9);
+        li2.add(1);
+        li2.add(4);
+        li2.add(0);
+        li2.add(4);
+
+        li2.printList();
+        li2.head = li2.reverseList(li2.head);
+        System.out.print("Reversed list: ");
+        li2.printList();
+	}
+}
