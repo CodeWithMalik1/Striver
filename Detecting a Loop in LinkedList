@@ -1,0 +1,64 @@
+// Input: head -> 1 -> 2 -> 3 -> 4 -> 5, pos = 1
+// Output: true
+// Explanation: The tail of the linked list connects to the node at 1st index.
+
+public class Main {
+    static class LinkedList {
+        Node head;
+        Node tail;
+
+        static class Node {
+            int data;
+            Node next;
+
+            public Node(int data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        // Add node at end
+        public void add(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
+            }
+        }
+        // Create cycle: tail connects to node at position pos
+        public void createCycle(int pos) {
+            if (pos < 0) return;
+            Node temp = head;
+            for (int i = 0; i < pos; i++) {
+                if (temp == null) return;
+                temp = temp.next;
+            }
+            tail.next = temp;
+        }
+        // Detect cycle using Floyd's cycle detection algorithm
+        public boolean hasCycle() {
+            Node slow = head, fast = head;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (slow == fast) return true;
+            }
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+
+        list.createCycle(1); 
+
+        System.out.println(list.hasCycle()); // Output: true
+    }
+}
