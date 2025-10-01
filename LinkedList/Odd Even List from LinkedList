@@ -1,0 +1,95 @@
+// Input: head -> 1 -> 2 -> 3 -> 4 -> 5
+// Output: head -> 1 -> 3 -> 5 -> 2 -> 4
+// Explanation: The nodes with odd indices are 1, 3, 5 and the ones with even indices are 2, 4.
+// Input: head -> 4 -> 3 -> 2 -> 1
+// Output: head -> 4 -> 2 -> 3 -> 1
+// Explanation: The nodes with odd indices are 4, 2 and the ones with even indices are 3, 1.
+
+
+
+public class Main {
+    static class LinkedList {
+        Node head;
+
+        static class Node {
+            int data;
+            Node next;
+
+            Node(int data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        // Add node at end
+        public void addLast(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = newNode;
+                return;
+            }
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+
+        // Rearrange odd and even index nodes
+        public void oddEvenList() {
+            if (head == null || head.next == null) return;
+
+            Node odd = head;
+            Node even = head.next;
+            Node evenHead = even; // to connect later
+
+            while (even != null && even.next != null) {
+                odd.next = even.next;
+                odd = odd.next;
+
+                even.next = odd.next;
+                even = even.next;
+            }
+
+            // connect odd list to even list
+            odd.next = evenHead;
+        }
+
+        // Print the linked list
+        public void printList() {
+            Node temp = head;
+            while (temp != null) {
+                System.out.print(temp.data + " ");
+                temp = temp.next;
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        LinkedList list1 = new LinkedList();
+        list1.addLast(1);
+        list1.addLast(2);
+        list1.addLast(3);
+        list1.addLast(4);
+        list1.addLast(5);
+
+        System.out.print("Input:  ");
+        list1.printList();
+        list1.oddEvenList();
+        System.out.print("Output: ");
+        list1.printList();
+
+        LinkedList list2 = new LinkedList();
+        list2.addLast(4);
+        list2.addLast(3);
+        list2.addLast(2);
+        list2.addLast(1);
+
+        System.out.print("Input:  ");
+        list2.printList();
+        list2.oddEvenList();
+        System.out.print("Output: ");
+        list2.printList();
+    }
+}
