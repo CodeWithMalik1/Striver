@@ -1,0 +1,101 @@
+// Input: head -> 5 -> 6 -> 1 -> 2 -> 1
+// Output: head -> 1 -> 1 -> 2 -> 5 -> 6
+// Explanation: 1 <= 1 <= 2 <= 5 <= 6
+
+
+public class Main {
+    static class LinkedList {
+        Node head;
+        Node tail;
+
+        static class Node {
+            int data;
+            Node next;
+
+            public Node(int data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        // Add node at end
+        public void add(int data) {
+            Node newNode = new Node(data);
+            if (head == null) {
+                head = tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
+            }
+        }
+        
+        private Node getMiddle(Node h) {
+            if (h == null) return h;
+
+            Node slow = h, fast = h;
+            while (fast.next != null && fast.next.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            return slow;
+        }
+        public void sortList(){
+            head = mergeSort(head);
+        }
+        private Node mergeSort(Node head){
+            if(head==null||head.next==null) return head;
+            Node middleNode=getMiddle(head);
+            Node NextofMiddle=middleNode.next;
+            
+            middleNode.next=null;
+            
+            Node left=mergeSort(head);
+            Node right=mergeSort(NextofMiddle);
+            return sortedMerge(left, right);
+        }
+            
+        private Node sortedMerge(Node left,Node right){
+            if(left==null) return right;
+            if(right==null) return left;
+            Node result;
+            if(left.data<=right.data){
+                result=left;
+                result.next=sortedMerge(left.next,right);
+            }
+            else{
+                result=right;
+                result.next=sortedMerge(left,right.next);
+            }
+            return result;
+        }
+            
+        public void printList(){
+            if(head==null){
+            System.out.println("List is empty");
+            return;
+                
+            }
+            Node temp=head;
+            while(temp!=null){
+                System.out.printf(temp.data+" ");
+                temp=temp.next;
+            }
+            System.out.println();
+        }
+        
+
+    }
+
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.add(3);
+        list.add(5);
+        list.add(99);
+        list.add(9);
+        list.add(1);
+        list.printList();
+        list.sortList();
+        list.printList();
+
+    }
+}
