@@ -1,0 +1,35 @@
+// Input: n = 5
+
+// Output: 1
+
+// Explanation: The binary representation of 5 is 101, which has 2 set bits.
+
+// Input: n = 15
+
+// Output: 0
+
+// Explanation: The binary representation of 15 is 1111, which has 4 set bits. Explanation: 24 = 16
+
+public class Main {
+ public static int countSetBits(int n) {
+     int c=0;
+        while(n>0){
+            n=n&(n-1);
+            c++;
+        }
+        return c;
+    }
+    public static int countZeroBits(int n) {
+        if (n == 0) return 1; // Special case: binary 0 has 1 zero bit
+        int totalBits = Integer.toBinaryString(n).length();
+        int setBits = countSetBits(n);
+        return totalBits - setBits;
+    }
+
+ public static void main(String[] args) {
+     int n=5;
+     System.out.println(countZeroBits(n));
+     int n1=15;
+     System.out.println(countZeroBits(n1));
+ }
+}
