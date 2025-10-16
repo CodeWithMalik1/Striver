@@ -1,0 +1,17 @@
+ Explanation: The binary representation of 15 is 1111, which has 4 set bits. Explanation: 24 = 16
+
+public class Main {
+ public static int[] swap(int a,int b) {
+     a=a^b;
+     b=a^b;
+     a=a^b;
+     return new int[]{a,b};
+     
+}
+ public static void main(String[] args) {
+     int a=2,b=10;
+     int arr[]=swap(a,b);
+     System.out.println(arr[0]+" "+arr[1]);
+     
+ }
+}
