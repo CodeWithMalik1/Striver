@@ -1,0 +1,21 @@
+// 4. Since result ≠ 0 → **odd**
+// ✅ Output: 5 is **odd**
+// ---
+// ## 🧩 Step-by-step Example 2: `n = 10`
+// 1. Binary of 10 → `1010`
+// 2. Mask → `0001`
+// 3. AND:
+
+
+public class Main {
+ public static boolean isOdd(int n) {
+     return (n & 1) != 0; // If LSB is 1, number is odd
+ }
+
+ public static void main(String[] args) {
+     int n1 = 5, n2 = 10;
+
+     System.out.println(n1 + " is odd? " + isOdd(n1)); // true
+     System.out.println(n2 + " is odd? " + isOdd(n2)); // false
+ }
+}
