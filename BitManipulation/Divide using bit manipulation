@@ -1,0 +1,41 @@
+// Input : Dividend = 10 , Divisor = 3
+
+// Output : 3
+
+// Explanation : 10/3 = 3.33 , truncated to 3.
+
+
+public class Main {
+    public static int divide(int dividend, int divisor) {
+        // Handle overflow
+        if (dividend == Integer.MIN_VALUE && divisor == -1) 
+            return Integer.MAX_VALUE;
+
+        // Determine sign of result
+        boolean negative = (dividend < 0) ^ (divisor < 0);
+
+        // Work with long to avoid overflow during abs
+        long dvd = Math.abs((long) dividend);
+        long dvs = Math.abs((long) divisor);
+        int quotient = 0;
+
+        while (dvd >= dvs) {
+            long temp = dvs, multiple = 1;
+            while (dvd >= (temp << 1)) {
+                temp <<= 1;
+                multiple <<= 1;
+            }
+            dvd -= temp;
+            quotient += multiple;
+        }
+
+        // Apply sign
+        return negative ? -quotient : quotient;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(divide(10, 3));  // 3
+        System.out.println(divide(7, -3));  // -2
+        System.out.println(divide(7, 2));   // 3
+    }
+}
