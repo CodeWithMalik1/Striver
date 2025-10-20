@@ -1,0 +1,23 @@
+import java.util.*;
+public class Main
+{
+    public static int[] removeDuplicate(int arr[]){
+        Set <Integer> s=new HashSet<>();
+        for(int num : arr){
+            s.add(num);
+        }
+        int unique[]=new int[s.size()];
+        int i=0;
+        for(int num :s){
+            unique[i++]=num;
+        }
+        return unique;
+    }
+	public static void main(String[] args) {
+		int[] arr = {1,6,6, 1, 2, 2, 3, 4, 4, 5};
+		int[] newArr=removeDuplicate(arr);
+		for(int num:newArr){
+		    System.out.print(num+" ");
+		}
+	}
+}
