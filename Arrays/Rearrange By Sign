@@ -20,6 +20,25 @@ public static int[] RearrangebySign(int[] A, int n){
   return A;
 }    
 
+or
+
+public static int[] RearrangebySign(int[] nums) {
+       int posIndex=0;
+       int negIndex=1;
+       int nums1[]=new int[nums.length];
+       for(int i=0;i<nums.length;i++){
+           if(nums[i]>0){
+               nums1[posIndex]=nums[i];
+               posIndex+=2;
+           }
+           else{
+               nums1[negIndex]=nums[i];
+               negIndex+=2;
+           }
+       }
+        return nums1;
+    }
+
 public static void main(String args[]) 
 {
   int n = 4;
