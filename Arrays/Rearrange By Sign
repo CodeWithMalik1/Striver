@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Main{
-
+///method 1 less optimal
 public static int[] RearrangebySign(int[] A, int n){
   ArrayList<Integer> pos=new ArrayList<>();
   ArrayList<Integer> neg=new ArrayList<>();
@@ -21,7 +21,7 @@ public static int[] RearrangebySign(int[] A, int n){
 }    
 
 or
-
+//more optimal
 public static int[] RearrangebySign(int[] nums) {
        int posIndex=0;
        int negIndex=1;
