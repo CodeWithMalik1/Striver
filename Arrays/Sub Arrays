@@ -1,0 +1,24 @@
+import java.util.*;
+public class Main
+{
+    public static int subArrays(int arr[],int k){
+        HashMap<Integer,Integer> hp=new HashMap<>();
+        int sum=0,c=0;
+        hp.put(0,1);
+        for(int i=0;i<arr.length;i++){
+            sum=sum+arr[i];
+            int remove=sum-k;
+            if(hp.containsKey(remove)){
+                c+=hp.get(remove);
+            }
+            hp.put(sum,hp.getOrDefault(sum,0)+1);
+        }
+        return c;
+        
+    }
+	public static void main(String[] args) {
+		int[] arr = {3, 1, 2, 4};
+        int k = 6;
+        System.out.print(subArrays(arr,k));
+	}
+}
